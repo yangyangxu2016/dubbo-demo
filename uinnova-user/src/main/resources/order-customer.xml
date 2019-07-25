@@ -21,7 +21,7 @@
 
     <dubbo:reference id="orderService2"
                      interface="com.uinnova.order.IOrderService"
-                     check="false" protocol="hessian" version="0.2.0"/>
+                     check="false"  version="0.2.0"/>
 
 
     <dubbo:reference id="orderQueryService"
