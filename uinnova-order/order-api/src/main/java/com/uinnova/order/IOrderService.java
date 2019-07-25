@@ -3,7 +3,7 @@ package com.uinnova.order;
 /**
  * @author xuyangyang
  */
-public interface IOrderServices {
+public interface IOrderService {
 
     /**
      * 下单操作

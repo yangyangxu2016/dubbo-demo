@@ -1,21 +1,32 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans.xsd        http://code.alibabatech.com/schema/dubbo        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+             http://www.springframework.org/schema/beans/spring-beans.xsd
+                   http://code.alibabatech.com/schema/dubbo
+                   http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-
-<!-- 提供方应用信息，用于计算依赖关系 -->
+    <!-- 提供方应用信息，用于计算依赖关系 -->
     <dubbo:application name="order-user" owner="xuyy"/>
 
     <!-- 使用multicast广播注册中心暴露服务地址 -->
-    <!--<dubbo:registry address="multicast://127.0.0.1:2181"/>-->
-    <dubbo:registry address="N/A"/>
+    <dubbo:registry id="zkOne" address="zookeeper://140.143.236.197:2181"/>
+    <!--不使用注册中心-->
+    <!--<dubbo:registry address="N/A"/>-->
 
-    <!-- 用dubbo协议在20880端口暴露服务,当前服务发布所依赖的协议werservice、thrift、hessain、http -->
-    <dubbo:protocol name="dubbo" port="20880"/>
+    <!--生成一个远程服务的调用代理  protocol支持多协议  version 支持多版本 -->
+    <dubbo:reference id="orderService"
+                     interface="com.uinnova.order.IOrderService"
+                     check="false" protocol="hessian" version="0.1.0"/>
 
-    <!--生成一个远程服务的调用代理-->
-    <dubbo:reference id="orderServices" interface="com.uinnova.order.IOrderServices"
-                     url="dubbo://192.168.10.67:20880/com.uinnova.order.IOrderServices"/>
+    <dubbo:reference id="orderService2"
+                     interface="com.uinnova.order.IOrderService"
+                     check="false" protocol="hessian" version="0.2.0"/>
+
+
+    <dubbo:reference id="orderQueryService"
+                     interface="com.uinnova.order.IOrderQueryService"
+                     check="false" protocol="dubbo" version="0.1.0"/>
+
 
 </beans>
