@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans default-autowire="byName"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <context:annotation-config/>
+
+    <!--生成一个远程服务的调用代理  protocol支持多协议  version 支持多版本 -->
+    <dubbo:reference id="orderService"
+                     interface="com.uinnova.order.IOrderService"
+                     protocol="hessian" version="0.1.0"/>
+
+    <dubbo:reference id="orderService2"
+                     interface="com.uinnova.order.IOrderService"
+                     version="0.2.0"/>
+
+
+    <dubbo:reference id="orderQueryService"
+                     interface="com.uinnova.order.IOrderQueryService"
+                     protocol="dubbo" version="0.1.0"/>
+
+
+</beans>

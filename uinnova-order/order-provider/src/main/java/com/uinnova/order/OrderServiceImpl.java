@@ -1,8 +1,11 @@
 package com.uinnova.order;
 
+import org.springframework.stereotype.Service;
+
 /**
  * @author xuyangyang
  */
+@Service(value = "orderService")
 public class OrderServiceImpl implements IOrderService {
 
     public DoOrderResponse doOrder(DoOrderRequest request) {

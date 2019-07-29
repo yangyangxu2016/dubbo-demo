@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd" default-autowire="byName">
+
+    <context:annotation-config/>
+
+    <context:component-scan base-package="com.uinnova.user"/>
+
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="user-provider" owner="xuyy"/>
+
+
+    <!-- 使用multicast广播注册中心暴露服务地址  registry="false" 表示这个服务不会注册到注册中心，但是可以使用注册中心的服务-->
+    <dubbo:registry protocol="zookeeper" address="140.143.236.197:2181"/>
+    <!--<dubbo:registry address="N/A"/>-->
+
+    <!-- 用dubbo协议在20880端口暴露服务,当前服务发布所依赖的协议werservice、thrift、hessain、http -->
+    <dubbo:protocol name="dubbo" port="20881"/>
+
+    <!--服务发布的配置，需要保留的服务接口-->
+    <dubbo:service interface="com.uinnova.user.IUserService" ref="userService"/>
+
+
+</beans>

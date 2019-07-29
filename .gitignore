@@ -22,10 +22,19 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-uinnova-order/.idea/**
-uinnova-user/.idea/**
+
+ssm-scaffold/
+
+
 
 
 uinnova-order/order-consumer/target/
 uinnova-order/order-provider/target/
 uinnova-order/order-api/target/
+uinnova-order/.idea/**
+
+
+uinnova-user/user-consumer/target/
+uinnova-user/user-provider/target/
+uinnova-user/user-api/target/
+uinnova-user/.idea/**
